@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.scss';
+import { Modal } from '..';
 
 function Header() {
+  const [isModalOpened, setModalOpened] = useState(false);
+  const toggleModalOpened = () => {
+    setModalOpened((prev) => !prev);
+  };
+
   return (
     <header className="header">
       <div className="wrapper">
@@ -9,8 +15,12 @@ function Header() {
           <span className="logo-img" />
           My notes
         </a>
-        <button className="create-btn">create note</button>
+        <button className="create-btn" onClick={toggleModalOpened}>
+          <span className="add-icon" />
+          create note
+        </button>
       </div>
+      <Modal isOpened={isModalOpened} onCancel={toggleModalOpened} />
     </header>
   );
 }
