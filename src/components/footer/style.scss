@@ -1,0 +1,26 @@
+@import "./../../styles";
+
+.footer {
+  padding: 0.5rem 0;
+  box-shadow: 0px -2px 4px -1px rgb(0 0 0 / 20%), 0px -4px 5px 0px rgb(0 0 0 / 14%), 0px -1px 10px 0px rgb(0 0 0 / 12%);
+  background-color: $bg-card;
+  display: flex;
+  justify-content: center;
+}
+
+.gh {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  padding: 1.5rem;
+  border-radius: 50%;
+  background-image: url('./../../assets/gh.svg');
+  background-size: 2rem 2rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: .3s ease-in-out;
+
+  &:hover {
+    background-color: rgb(0, 0, 0, 0.1);
+  }
+}
