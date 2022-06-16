@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './style.scss';
-import { Modal } from '..';
+import { Modal, NoteCreator } from '..';
 
 function Header() {
   const [isModalOpened, setModalOpened] = useState(false);
@@ -20,7 +20,9 @@ function Header() {
           create note
         </button>
       </div>
-      <Modal isOpened={isModalOpened} onCancel={toggleModalOpened} />
+      <Modal isOpened={isModalOpened} onCancel={toggleModalOpened}>
+        <NoteCreator onCancel={toggleModalOpened} />
+      </Modal>
     </header>
   );
 }
