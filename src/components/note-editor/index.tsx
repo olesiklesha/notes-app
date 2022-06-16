@@ -1,49 +1,52 @@
 import React, { useContext, useState } from 'react';
 import { GloabalActionsKind, GlobalContext } from '../../store';
-import './style.scss';
 
-interface CreatorProps {
+interface UpdaterProps {
+  text: string;
+  tags: string[];
+  id: string;
   onCancel: () => void;
 }
 
-function NoteCreator({ onCancel }: CreatorProps) {
-  const [text, setText] = useState('');
+function NoteEditor({ text, id, tags, onCancel }: UpdaterProps) {
+  const [value, setValue] = useState(text);
   const [, dispatch] = useContext(GlobalContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value);
+    setValue(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    dispatch({
-      type: GloabalActionsKind.ADD_NOTE,
-      payload: {
-        id: String(Date.now()),
-        text,
-        tags: [],
-      },
-    });
+    if (value.length) {
+      dispatch({
+        type: GloabalActionsKind.UPDATE_NOTE,
+        payload: {
+          id,
+          text: value,
+          tags,
+        },
+      });
+    }
 
     onCancel();
   };
-
   return (
     <form onSubmit={handleSubmit} className="creator-form">
-      <h2 className="modal-title">Create note</h2>
+      <h2 className="modal-title">Edit note</h2>
       <textarea
         cols={30}
         rows={10}
-        value={text}
+        value={value}
         onChange={handleChange}
         className="textarea"
       ></textarea>
       <button className="create-btn create-btn--modal" type="submit">
-        create note
+        Edit note
       </button>
     </form>
   );
 }
 
-export default NoteCreator;
+export default NoteEditor;

@@ -31,7 +31,7 @@ function Modal({ isOpened, onCancel, children, onConfirm }: ModalProps) {
             <div className="modal-container">
               {children || (
                 <div>
-                  <h2 className="confirm-title">Do you really want to delete?</h2>
+                  <h2 className="modal-title">Do you really want to delete?</h2>
                   <div className="confrim-btns-container">
                     <button onClick={handleClick} className="confirm-btn confirm-btn--cansel">
                       cansel

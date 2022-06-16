@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { INote } from '../../models';
 import './style.scss';
-import { Modal, NoteViewer } from '../index';
+import { Modal, NoteEditor, NoteViewer } from '../index';
 import { GloabalActionsKind, GlobalContext } from '../../store';
 
 function Note({ text, id, tags }: INote) {
   const [isViewerOpened, setViewerOpened] = useState(false);
+  const [isEditOpened, setEditOpened] = useState(false);
   const [isConfirmOpened, setConfirmOpened] = useState(false);
   const [, dispatch] = useContext(GlobalContext);
 
@@ -13,12 +14,17 @@ function Note({ text, id, tags }: INote) {
     setViewerOpened((prev) => !prev);
   };
 
+  const toggleEditOpened = () => {
+    setEditOpened((prev) => !prev);
+  };
+
   const handleBtnsClick = (e: React.MouseEvent) => {
     e.stopPropagation();
 
     if (e.currentTarget.id === 'delete') {
       toggleConfrimOpened();
-    } else {
+    } else if (e.currentTarget.id === 'edit') {
+      toggleEditOpened();
     }
   };
 
@@ -27,7 +33,6 @@ function Note({ text, id, tags }: INote) {
   };
 
   const deleteNote = () => {
-    console.log('_');
     console.log(id);
     dispatch({
       type: GloabalActionsKind.DELETE_NOTE,
@@ -38,7 +43,7 @@ function Note({ text, id, tags }: INote) {
     <>
       <div className="card-wrapper" onClick={toggleViewerOpened}>
         <div className="btns-container">
-          <button className="actions-btn actions-btn--edit" />
+          <button className="actions-btn actions-btn--edit" id="edit" onClick={handleBtnsClick} />
           <button
             className="actions-btn actions-btn--delete"
             id="delete"
@@ -49,6 +54,9 @@ function Note({ text, id, tags }: INote) {
       </div>
       <Modal isOpened={isViewerOpened} onCancel={toggleViewerOpened}>
         <NoteViewer text={text} id={id} tags={tags} onCancel={toggleViewerOpened} />
+      </Modal>
+      <Modal isOpened={isEditOpened} onCancel={toggleEditOpened}>
+        <NoteEditor text={text} tags={tags} id={id} onCancel={toggleEditOpened} />
       </Modal>
       <Modal isOpened={isConfirmOpened} onCancel={toggleConfrimOpened} onConfirm={deleteNote} />
     </>
