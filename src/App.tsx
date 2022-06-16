@@ -4,10 +4,8 @@ import { Footer, Header, Note } from './components';
 import { GlobalContext } from './store';
 
 function App() {
-  const [state] = useContext(GlobalContext);
-  const { notes } = state;
-  console.log(state);
-  console.log(notes);
+  const [{ notes }] = useContext(GlobalContext);
+
   return (
     <main className="main">
       <Header />

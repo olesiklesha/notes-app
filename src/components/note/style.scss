@@ -1,0 +1,54 @@
+@import "./../../styles";
+
+.card-wrapper {
+  position: relative;
+  flex-basis: 265px;
+  height: 270px;
+  margin: 1rem 0 0 1rem;
+  padding: 1rem;
+  background-color: $bg-card;
+  box-shadow: rgb(0 0 0 / 20%) 0 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: rgb(0 0 0 / 20%) 0 4px 5px 3px, rgb(0 0 0 / 14%) 0 2px 4px 4px, rgb(0 0 0 / 12%) 0 1px 0 0;
+  }
+}
+
+.btns-container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.actions-btn {
+  background-color: transparent;
+  width: 15px;
+  height: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &:hover {
+    background-color: rgb(0, 0, 0, 0.1);
+  }
+  &--edit {
+    background-image: url('./../../assets/edit.svg');
+  }
+
+  &--delete {
+    background-image: url('./../../assets/delete.svg');
+  }
+}
+
+.note-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+}
