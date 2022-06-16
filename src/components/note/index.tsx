@@ -51,6 +51,14 @@ function Note({ text, id, tags }: INote) {
           />
         </div>
         <p className="note-text">{text}</p>
+        <div className="tags-container">
+          {tags.length > 0 &&
+            tags.map((el) => (
+              <span key={el + id} className="tag">
+                {el}
+              </span>
+            ))}
+        </div>
       </div>
       <Modal isOpened={isViewerOpened} onCancel={toggleViewerOpened}>
         <NoteViewer text={text} id={id} tags={tags} onCancel={toggleViewerOpened} />

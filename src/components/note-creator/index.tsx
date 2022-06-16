@@ -17,12 +17,14 @@ function NoteCreator({ onCancel }: CreatorProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    const tags = text.match(/(#[a-z\d-]+)/gi) as string[];
+    // (^|\s)
     dispatch({
       type: GloabalActionsKind.ADD_NOTE,
       payload: {
         id: String(Date.now()),
         text,
-        tags: [],
+        tags,
       },
     });
 

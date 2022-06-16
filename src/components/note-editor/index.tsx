@@ -20,6 +20,8 @@ function NoteEditor({ text, id, tags, onCancel }: UpdaterProps) {
     e.preventDefault();
 
     if (value.length) {
+      const tags = text.match(/(#[a-z\d-]+)/gi) as string[];
+
       dispatch({
         type: GloabalActionsKind.UPDATE_NOTE,
         payload: {
@@ -35,13 +37,16 @@ function NoteEditor({ text, id, tags, onCancel }: UpdaterProps) {
   return (
     <form onSubmit={handleSubmit} className="creator-form">
       <h2 className="modal-title">Edit note</h2>
-      <textarea
-        cols={30}
-        rows={10}
-        value={value}
-        onChange={handleChange}
-        className="textarea"
-      ></textarea>
+      {/*<textarea*/}
+      {/*  cols={30}*/}
+      {/*  rows={10}*/}
+      {/*  value={value}*/}
+      {/*  onChange={handleChange}*/}
+      {/*  className="textarea"*/}
+      {/*></textarea>*/}
+      <div contentEditable={true}>
+        {text.replace(/(^|\s)(#[a-z\d-]+)/gi, "$1<span class='hash_tag'>$2</span>")}
+      </div>
       <button className="create-btn create-btn--modal" type="submit">
         Edit note
       </button>
