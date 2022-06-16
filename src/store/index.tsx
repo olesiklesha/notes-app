@@ -57,11 +57,11 @@ function globalReducer(state: GlobalState, action: GlobalAction): GlobalState {
     case GloabalActionsKind.DELETE_NOTE:
       window.localStorage.setItem(
         'notes',
-        JSON.stringify({ notes: state.notes.filter((el) => el.id !== (payload as INote).id) })
+        JSON.stringify({ notes: state.notes.filter((el) => el.id !== payload) })
       );
 
       return {
-        notes: state.notes.filter((el) => el.id !== (payload as INote).id),
+        notes: state.notes.filter((el) => el.id !== payload),
       };
 
     default: {
