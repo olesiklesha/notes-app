@@ -7,7 +7,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1110;
+  z-index: 2;
 }
 
 .modal-container {
@@ -17,4 +17,12 @@
   transform: translate(-50%, -50%);
   background-color: ghostwhite;
   border-radius: 4px;
+  z-index: 3;
+  width: 50%;
+}
+
+@media (max-width: 800px) {
+  .modal-container {
+    width: 80%;
+  }
 }
