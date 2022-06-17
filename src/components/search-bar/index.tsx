@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import './style.scss';
 import { INote } from '../../models';
 import { GlobalContext } from '../../store';
+import './style.scss';
 
 interface SearchBarProps {
   update: (value: INote[]) => void;

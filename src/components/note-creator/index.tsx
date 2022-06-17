@@ -18,7 +18,7 @@ function NoteCreator({ onCancel }: CreatorProps) {
     e.preventDefault();
 
     const tags = text.match(/(#[a-z\d-]+)/gi) as string[];
-    // (^|\s)
+
     dispatch({
       type: GloabalActionsKind.ADD_NOTE,
       payload: {
@@ -34,13 +34,7 @@ function NoteCreator({ onCancel }: CreatorProps) {
   return (
     <form onSubmit={handleSubmit} className="creator-form">
       <h2 className="modal-title">Create note</h2>
-      <textarea
-        cols={30}
-        rows={10}
-        value={text}
-        onChange={handleChange}
-        className="textarea"
-      ></textarea>
+      <textarea cols={30} rows={10} value={text} onChange={handleChange} className="textarea" />
       <button className="create-btn create-btn--modal" type="submit">
         create note
       </button>

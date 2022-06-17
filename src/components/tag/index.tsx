@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import './style.scss';
 import { GloabalActionsKind, GlobalContext } from '../../store';
+import './style.scss';
 
 interface TagProps {
   text: string;

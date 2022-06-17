@@ -1,6 +1,6 @@
 import React from 'react';
-import './style.scss';
 import Highlighter from 'react-highlight-words';
+import './style.scss';
 
 interface ViewerProps {
   text: string;

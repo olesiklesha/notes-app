@@ -46,13 +46,7 @@ function NoteEditor({ text, id, tags, onCancel }: UpdaterProps) {
     <form onSubmit={handleSubmit} className="creator-form">
       <h2 className="modal-title">Edit note</h2>
       {isEditing ? (
-        <textarea
-          cols={30}
-          rows={10}
-          value={value}
-          onChange={handleChange}
-          className="textarea"
-        ></textarea>
+        <textarea cols={30} rows={10} value={value} onChange={handleChange} className="textarea" />
       ) : (
         <Highlighter
           searchWords={tags}

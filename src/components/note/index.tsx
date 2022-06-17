@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { INote } from '../../models';
-import './style.scss';
-import { Modal, NoteEditor, NoteViewer, Tag } from '../index';
+import { Modal, NoteEditor, NoteViewer, Tag } from '..';
 import { GloabalActionsKind, GlobalContext } from '../../store';
 import Highlighter from 'react-highlight-words';
+import './style.scss';
 
 function Note({ text, id, tags }: INote) {
   const [isViewerOpened, setViewerOpened] = useState(false);

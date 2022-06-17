@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './app.scss';
 import { Footer, Header, Note, SearchBar } from './components';
 import { GlobalContext } from './store';
 import { INote } from './models';
+import './app.scss';
 
 function App() {
   const [{ notes }] = useContext(GlobalContext);

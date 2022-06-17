@@ -12,7 +12,7 @@ export enum GloabalActionsKind {
   DELETE_TAG = 'DELETE_TAG',
 }
 
-export type DeleteTagPayload = {
+type DeleteTagPayload = {
   id: string;
   tag: string;
 };

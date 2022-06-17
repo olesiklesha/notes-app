@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './style.scss';
 import { Modal, NoteCreator } from '..';
+import './style.scss';
 
 function Header() {
   const [isModalOpened, setModalOpened] = useState(false);
