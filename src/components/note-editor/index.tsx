@@ -27,14 +27,14 @@ function NoteEditor({ text, id, tags, onCancel }: UpdaterProps) {
     e.preventDefault();
 
     if (value.length) {
-      const tags = text.match(/(#[a-z\d-]+)/gi) as string[];
+      const newTags = value.match(/(#[a-z\d-]+)/gi) as string[];
 
       dispatch({
         type: GloabalActionsKind.UPDATE_NOTE,
         payload: {
           id,
           text: value,
-          tags: tags.map((el) => el.slice(1)),
+          tags: newTags.map((el) => el.slice(1)),
         },
       });
     }
@@ -60,7 +60,7 @@ function NoteEditor({ text, id, tags, onCancel }: UpdaterProps) {
           onClick={handleEditing}
         />
       )}
-      <button className="create-btn create-btn--modal" type="submit">
+      <button className="create-btn create-btn--modal" type="submit" disabled={!isEditing}>
         Edit note
       </button>
     </form>

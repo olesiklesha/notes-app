@@ -12,4 +12,9 @@
 
 .create-btn--modal {
   margin: 0 auto;
+
+  &:disabled {
+    color: grey;
+    border-color: grey;
+  }
 }

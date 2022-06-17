@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { INote } from '../../models';
 import './style.scss';
-import { Modal, NoteEditor, NoteViewer } from '../index';
+import { Modal, NoteEditor, NoteViewer, Tag } from '../index';
 import { GloabalActionsKind, GlobalContext } from '../../store';
 import Highlighter from 'react-highlight-words';
 
@@ -56,14 +56,8 @@ function Note({ text, id, tags }: INote) {
           textToHighlight={text.replace(/#/gi, '')}
           className="note-text"
         />
-        {/*<p className="note-text">{text.replace(/#/gi, '')}</p>*/}
         <div className="tags-container">
-          {tags.length > 0 &&
-            tags.map((el) => (
-              <span key={el + id} className="tag">
-                {el}
-              </span>
-            ))}
+          {tags.length > 0 && tags.map((el) => <Tag id={id} text={el} key={el + id} />)}
         </div>
       </div>
       <Modal isOpened={isViewerOpened} onCancel={toggleViewerOpened}>

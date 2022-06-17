@@ -9,12 +9,39 @@ export enum GloabalActionsKind {
   ADD_NOTE = 'ADD_NOTE',
   UPDATE_NOTE = 'UPDATE_NOTE',
   DELETE_NOTE = 'DELETE_NOTE',
+  DELETE_TAG = 'DELETE_TAG',
 }
+
+export type DeleteTagPayload = {
+  id: string;
+  tag: string;
+};
 
 interface GlobalAction {
   type: GloabalActionsKind;
-  payload: INote | string;
+  payload: INote | string | DeleteTagPayload;
 }
+
+const deleteTag = (payload: DeleteTagPayload, state: GlobalState): GlobalState => {
+  const { tag, id } = payload;
+  const { notes } = state;
+
+  const updatedNotes = notes.map((el) => {
+    if (el.id === id) {
+      const target = Object.assign({}, el);
+      target.tags = target.tags.filter((el) => el !== tag);
+      target.text = target.text.replaceAll(`#${tag}`, tag);
+      return target;
+    }
+
+    return el;
+  });
+
+  return {
+    ...state,
+    notes: updatedNotes,
+  };
+};
 
 const initState = () => {
   const ls = window.localStorage.getItem('notes');
@@ -63,6 +90,14 @@ function globalReducer(state: GlobalState, action: GlobalAction): GlobalState {
       return {
         notes: state.notes.filter((el) => el.id !== payload),
       };
+
+    case GloabalActionsKind.DELETE_TAG:
+      window.localStorage.setItem(
+        'notes',
+        JSON.stringify(deleteTag(payload as DeleteTagPayload, state))
+      );
+
+      return deleteTag(payload as DeleteTagPayload, state);
 
     default: {
       return state;
