@@ -18,14 +18,13 @@ function NoteCreator({ onCancel }: CreatorProps) {
     e.preventDefault();
 
     const tags = text.match(/(#[a-z\d-]+)/gi) as string[];
-    tags.map((el) => el.slice(1));
     // (^|\s)
     dispatch({
       type: GloabalActionsKind.ADD_NOTE,
       payload: {
         id: String(Date.now()),
         text,
-        tags: tags.map((el) => el.slice(1)),
+        tags: tags ? tags.map((el) => el.slice(1)) : [],
       },
     });
 

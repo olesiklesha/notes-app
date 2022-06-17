@@ -6,3 +6,4 @@ export { default as NoteCreator } from './note-creator';
 export { default as NoteViewer } from './note-viewer';
 export { default as NoteEditor } from './note-editor';
 export { default as Tag } from './tag';
+export { default as SearchBar } from './search-bar';

@@ -1,0 +1,40 @@
+@import "./../../styles";
+
+.search-wrapper {
+  position: relative;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  cursor: text;
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  max-width: 1440px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 24px;
+    height: 24px;
+    top: 9px;
+    left: 1.5rem;
+    background-image: url('./../../assets/search.svg');
+  }
+}
+
+.search {
+  border: 3px solid $bg-card;
+  border-radius: 10px;
+  padding: 8px 8px 8px calc(1em + 32px);
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font: inherit;
+  letter-spacing: inherit;
+  background: none;
+  height: 41px;
+  margin: 0;
+  outline: none;
+}
