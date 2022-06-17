@@ -6,7 +6,7 @@
   justify-content: space-between;
   position: relative;
   flex-basis: 265px;
-  height: 270px;
+  min-height: 270px;
   margin: 1rem 0 0 1rem;
   padding: 1rem;
   background-color: $bg-card;
@@ -60,6 +60,7 @@
 }
 
 .note-text {
+  margin-top: 1rem;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

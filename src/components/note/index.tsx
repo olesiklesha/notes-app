@@ -3,6 +3,7 @@ import { INote } from '../../models';
 import './style.scss';
 import { Modal, NoteEditor, NoteViewer } from '../index';
 import { GloabalActionsKind, GlobalContext } from '../../store';
+import Highlighter from 'react-highlight-words';
 
 function Note({ text, id, tags }: INote) {
   const [isViewerOpened, setViewerOpened] = useState(false);
@@ -50,7 +51,12 @@ function Note({ text, id, tags }: INote) {
             onClick={handleBtnsClick}
           />
         </div>
-        <p className="note-text">{text}</p>
+        <Highlighter
+          searchWords={tags}
+          textToHighlight={text.replace(/#/gi, '')}
+          className="note-text"
+        />
+        {/*<p className="note-text">{text.replace(/#/gi, '')}</p>*/}
         <div className="tags-container">
           {tags.length > 0 &&
             tags.map((el) => (

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { GloabalActionsKind, GlobalContext } from '../../store';
+import Highlighter from 'react-highlight-words';
 
 interface UpdaterProps {
   text: string;
@@ -10,6 +11,12 @@ interface UpdaterProps {
 
 function NoteEditor({ text, id, tags, onCancel }: UpdaterProps) {
   const [value, setValue] = useState(text);
+  const [isEditing, setEditing] = useState(false);
+
+  const handleEditing = () => {
+    setEditing(true);
+  };
+
   const [, dispatch] = useContext(GlobalContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -27,26 +34,32 @@ function NoteEditor({ text, id, tags, onCancel }: UpdaterProps) {
         payload: {
           id,
           text: value,
-          tags,
+          tags: tags.map((el) => el.slice(1)),
         },
       });
     }
 
     onCancel();
   };
+
   return (
     <form onSubmit={handleSubmit} className="creator-form">
       <h2 className="modal-title">Edit note</h2>
-      {/*<textarea*/}
-      {/*  cols={30}*/}
-      {/*  rows={10}*/}
-      {/*  value={value}*/}
-      {/*  onChange={handleChange}*/}
-      {/*  className="textarea"*/}
-      {/*></textarea>*/}
-      <div contentEditable={true}>
-        {text.replace(/(^|\s)(#[a-z\d-]+)/gi, "$1<span class='hash_tag'>$2</span>")}
-      </div>
+      {isEditing ? (
+        <textarea
+          cols={30}
+          rows={10}
+          value={value}
+          onChange={handleChange}
+          className="textarea"
+        ></textarea>
+      ) : (
+        <Highlighter
+          searchWords={tags}
+          textToHighlight={text.replace(/#/gi, '')}
+          onClick={handleEditing}
+        />
+      )}
       <button className="create-btn create-btn--modal" type="submit">
         Edit note
       </button>

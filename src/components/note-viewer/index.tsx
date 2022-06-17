@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.scss';
+import Highlighter from 'react-highlight-words';
 
 interface ViewerProps {
   text: string;
@@ -8,10 +9,10 @@ interface ViewerProps {
   onCancel: () => void;
 }
 
-function NoteViewer({ text, onCancel }: ViewerProps) {
+function NoteViewer({ text, tags, onCancel }: ViewerProps) {
   return (
     <div className="viewer-container">
-      <p className="text">{text}</p>
+      <Highlighter searchWords={tags} textToHighlight={text.replace(/#/gi, '')} />
       <button className="actions-btn actions-btn--close" onClick={onCancel} />
     </div>
   );
